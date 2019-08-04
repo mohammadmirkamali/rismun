@@ -1,0 +1,58 @@
+{
+  "name": "raw",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.3.0",
+    "@material-ui/icons": "^4.2.1",
+    "axios": "^0.19.0",
+    "base64-img": "^1.0.4",
+    "bcrypt": "^3.0.6",
+    "bootstrap": "^4.3.1",
+    "firebase": "^6.3.3",
+    "font-awesome": "^4.7.0",
+    "google-maps-react": "^2.0.2",
+    "image-to-base64": "^2.0.1",
+    "joi-browser": "^13.4.0",
+    "jwt-decode": "^2.2.0",
+    "leaflet": "^1.5.1",
+    "lodash": "^4.17.15",
+    "material-ui": "^0.20.2",
+    "mui-datatables": "^2.6.4",
+    "prop-types": "^15.7.2",
+    "query-string": "^6.8.2",
+    "raven-js": "^3.27.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-firebaseui": "^3.1.2",
+    "react-geolocated": "^2.5.0",
+    "react-github-login": "^1.0.3",
+    "react-google-login": "^5.0.4",
+    "react-images-upload": "^1.2.7",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "react-swipeable-views": "^0.13.3",
+    "react-toastify": "^5.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
