@@ -57,8 +57,8 @@ export default function PrimarySearchAppBar({ user }) {
             </Link>
           </Typography>
           <Typography variant="h6" style={{ paddingLeft: 20 }}>
-            <Link style={{ color: "white" }} to="/user">
-              Users
+            <Link style={{ color: "white" }} to="/actors">
+              Actors
             </Link>
           </Typography>
           {/* <Typography variant="h6" style={{ paddingLeft: 20 }}>

@@ -5,14 +5,7 @@ import { register } from "../sevices/register";
 import Joi from "joi-browser";
 import { toast } from "react-toastify";
 import GoogleLogin from "react-google-login";
-// import GitHubLogin from "react-github-login";
-import firebase from "firebase";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-
-// firebase.initializeApp({
-//   apiKey: "AIzaSyBPr6lIMh5arZQZx0q3TQSw_7xjSBD8auQ",
-//   authDomain: "rismun-c6bbc.firebaseapp.com"
-// });
+import Typography from "@material-ui/core/Typography";
 
 class Register extends Component {
   state = {
@@ -21,22 +14,6 @@ class Register extends Component {
     errors: ""
   };
 
-  // uiConfig = {
-  //   signInFlow: "popup",
-  //   signInOptions: [firebase.auth.GithubAuthProvider.PROVIDER_ID],
-  //   callbacks: {
-  //     signInSuccess: () => false
-  //   }
-  // };
-
-  // componentDidMount() {
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     this.setState({ isSignedIn: !!user });
-  //     console.log(user);
-  //     // console.log( user.c.email);
-  //   });
-  // }
-
   responseGoogle = response => {
     const data = { ...this.state.data };
     data.name = response.w3.ig;
@@ -44,7 +21,6 @@ class Register extends Component {
     data.password = response.w3.Eea;
     this.setState({ data });
     this.doSubmit();
-    // console.log(response.w3.Paa);
   };
 
   validate = () => {
@@ -114,12 +90,19 @@ class Register extends Component {
       <React.Fragment>
         <div
           style={{
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginTop: "2rem",
             textAlign: "center",
-            width: "80%",
-            paddingLeft: 80
+            width: "30rem",
+            minHeight: "25rem",
+            borderRadius: "10%",
+            borderStyle: "groove",
+            padding: "2rem"
           }}
         >
           <div>
+            <Typography variant="h4">Register</Typography>
             <TextField
               value={data.name}
               onChange={this.handleChange("name")}

@@ -90,19 +90,26 @@ class Movies extends React.Component {
         />
         {user && (
           <React.Fragment>
-            <Button
-              variant="contained"
-              color="primary"
+            <div
               style={{
-                margin: 40,
-                marginLeft: 300,
-                width: 500,
-                textAlign: "center"
+                marginTop: "3rem",
+                marginBottom: "5rem",
+                marginLeft: "auto",
+                marginRight: "auto",
+                width: "12rem"
               }}
-              href="/movies/new"
             >
-              New Movie
-            </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{
+                  width: "12rem"
+                }}
+                href="/movies/new"
+              >
+                New Movie
+              </Button>
+            </div>
           </React.Fragment>
         )}
       </div>

@@ -20,18 +20,17 @@ class MovieForm extends Component {
   state = {
     data: { name: "", rate: "", img: "", actors: [] },
     errors: "",
-    actors: [
-      "Tom Hanks",
-      "Will Smits",
-      "Morgan Freeman",
-      "Tom Cruise",
-      "Brad Pitt",
-      "Al Pacino"
-    ],
-
+    actors: [],
     firstActors: [],
     test: ""
   };
+
+  // "Tom Hanks",
+  // "Will Smits",
+  // "Morgan Freeman",
+  // "Tom Cruise",
+  // "Brad Pitt",
+  // "Al Pacino"
 
   async populateMovie() {
     try {
@@ -52,8 +51,23 @@ class MovieForm extends Component {
     }
   }
 
+  async populateActors() {
+    // const actors = { ...this.state.actors };
+    try {
+      const { data: actors } = await axios.get(
+        `http://localhost:3001/api/actors`
+      );
+
+      this.setState({ actors });
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404)
+        this.props.history.replace("/not-found");
+    }
+  }
+
   async componentWillMount() {
     await this.populateMovie();
+    await this.populateActors();
   }
 
   mapToViewModel(movie) {
@@ -149,16 +163,23 @@ class MovieForm extends Component {
   };
 
   render() {
-    const { data, errors, actors, firstActors } = this.state;
+    const { data, errors, actors: allActors, firstActors } = this.state;
     // console.log(data);
+    const actors = allActors.map(ac => ac.name);
 
     return (
       <React.Fragment>
         <div
           style={{
-            marginLeft: "30%",
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginTop: "2rem",
             textAlign: "center",
-            width: "30%"
+            width: "25rem",
+            height: "auto",
+            borderRadius: "10%",
+            borderStyle: "groove",
+            padding: "2rem"
           }}
         >
           <Typography variant="h4" style={{ paddingBottom: 40 }}>
@@ -186,26 +207,39 @@ class MovieForm extends Component {
             helperText={errors.rate}
             error={errors.rate ? true : false}
           />
+
           <ListGroup
             names={actors}
             parentCallBack={this.callBack}
-            title="Actress"
+            title="Actors"
             first={firstActors}
+            autoWidth="true"
           />
 
-          <input
-            id="contained-button-file"
-            style={{ display: "none" }}
-            variant="contained"
-            color="primary"
-            type="file"
-            onChange={this.handleImg}
-          />
-          <label htmlFor="contained-button-file" style={{ paddingTop: 30 }}>
-            <Button variant="contained" component="span">
-              Upload
-            </Button>
-          </label>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <input
+              id="contained-button-file"
+              style={{ display: "none" }}
+              variant="contained"
+              color="primary"
+              type="file"
+              onChange={this.handleImg}
+            />
+
+            <label htmlFor="contained-button-file" style={{ paddingTop: 30 }}>
+              <Button variant="contained" component="span">
+                Upload
+              </Button>
+            </label>
+
+            {data.img && (
+              <img
+                src={data.img}
+                alt="a"
+                style={{ width: "12rem", height: "12rem" }}
+              />
+            )}
+          </div>
 
           <div style={{ paddingTop: 20 }}>
             <Button

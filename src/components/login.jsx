@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 import { login } from "../sevices/auth";
 import { toast } from "react-toastify";
 import Joi from "joi-browser";
 import GoogleLogin from "react-google-login";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
   state = {
@@ -84,12 +86,18 @@ class Login extends Component {
       <React.Fragment>
         <div
           style={{
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginTop: "2rem",
             textAlign: "center",
-            width: "80%",
-            paddingLeft: 80
+            width: "30rem",
+            minHeight: "25rem",
+            borderRadius: "10%",
+            borderStyle: "groove",
+            padding: "2rem"
           }}
         >
-          <div />
+          <Typography variant="h4">Login</Typography>
           <div>
             <TextField
               label="Email"
@@ -138,6 +146,17 @@ class Login extends Component {
               onFailure={this.responseGoogle}
               cookiePolicy={"single_host_origin"}
             />
+          </div>
+          <div>
+            <Link to="/register">
+              <Button
+                style={{ marginTop: 20 }}
+                variant="contained"
+                color="primary"
+              >
+                Don't have account Register
+              </Button>
+            </Link>
           </div>
         </div>
       </React.Fragment>
