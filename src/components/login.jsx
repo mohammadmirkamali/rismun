@@ -17,7 +17,7 @@ class Login extends Component {
   responseGoogle = response => {
     const data = { ...this.state.data };
     try {
-      // data.email = response.w3.U3;
+      data.email = response.w3.U3;
       console.log(response);
 
       data.password = response.w3.Eea;
