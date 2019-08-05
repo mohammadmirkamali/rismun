@@ -38,7 +38,7 @@ class MovieForm extends Component {
       if (movieId === "new") return;
 
       const { data: movie } = await axios.get(
-        `http://localhost:3001/api/genres/${movieId}`
+        `http://localhost:8000/api/genres/${movieId}`
       );
 
       this.setState({
@@ -55,7 +55,7 @@ class MovieForm extends Component {
     // const actors = { ...this.state.actors };
     try {
       const { data: actors } = await axios.get(
-        `http://localhost:3001/api/actors`
+        `http://localhost:8000/api/actors`
       );
 
       this.setState({ actors });
@@ -139,9 +139,9 @@ class MovieForm extends Component {
 
     try {
       if (id === "new") {
-        await axios.post("http://localhost:3001/api/genres", obj);
+        await axios.post("http://localhost:8000/api/genres", obj);
       } else {
-        await axios.put(`http://localhost:3001/api/genres/${id}`, obj);
+        await axios.put(`http://localhost:8000/api/genres/${id}`, obj);
       }
 
       window.location = "/movies";

@@ -16,11 +16,17 @@ class Login extends Component {
 
   responseGoogle = response => {
     const data = { ...this.state.data };
-    data.email = response.w3.U3;
-    data.password = response.w3.Eea;
-    this.setState({ data });
-    this.doSubmit();
-    console.log(data);
+    try {
+      // data.email = response.w3.U3;
+      console.log(response);
+
+      data.password = response.w3.Eea;
+      this.setState({ data });
+      this.doSubmit();
+      console.log(data);
+    } catch (ex) {
+      console.log(ex);
+    }
   };
 
   validate = () => {
@@ -82,6 +88,8 @@ class Login extends Component {
 
   render() {
     const { data, errors } = this.state;
+    // console.log(data);
+
     return (
       <React.Fragment>
         <div

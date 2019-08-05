@@ -17,7 +17,7 @@ class Movies extends React.Component {
 
   async componentDidMount() {
     const { data: movies } = await axios.get(
-      "http://localhost:3001/api/genres"
+      "http://localhost:8000/api/genres"
     );
     this.setState({ movies });
   }
@@ -69,7 +69,7 @@ class Movies extends React.Component {
         for (let key of row.data) {
           try {
             await axios.delete(
-              `http://localhost:3001/api/genres/${movies[key.index]._id}`
+              `http://localhost:8000/api/genres/${movies[key.index]._id}`
             );
           } catch (ex) {
             const errors = ex.response.data;

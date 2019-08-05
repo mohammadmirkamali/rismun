@@ -11,8 +11,9 @@ class Actors extends Component {
 
   async componentDidMount() {
     const { data: actors } = await axios.get(
-      "http://localhost:3001/api/actors"
+      "http://localhost:8000/api/actors"
     );
+
     this.setState({ actors });
   }
 
@@ -24,8 +25,9 @@ class Actors extends Component {
     const obj = { name: this.state.name };
 
     try {
-      await axios.post("http://localhost:3001/api/actors", obj);
-      console.log(obj);
+      await axios.post("http://localhost:8000/api/actors", obj);
+      // console.log(obj);
+      // console.log(actors);
 
       window.location = "/actors";
     } catch (ex) {
