@@ -48,9 +48,16 @@ export default function PrimarySearchAppBar({ user }) {
       <AppBar position="static">
         <Toolbar>
           <IconButton color="inherit">
-            <MenuIcon />
+            <MenuIcon>
+              <Link to="/" />
+            </MenuIcon>
           </IconButton>
 
+          <Typography variant="h6" style={{ paddingLeft: 20 }}>
+            <Link style={{ color: "white" }} to="/">
+              Home
+            </Link>
+          </Typography>
           <Typography variant="h6" style={{ paddingLeft: 20 }}>
             <Link style={{ color: "white" }} to="/movies">
               Moives
