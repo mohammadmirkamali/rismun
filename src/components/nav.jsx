@@ -59,6 +59,11 @@ export default function PrimarySearchAppBar({ user }) {
             </Link>
           </Typography>
           <Typography variant="h6" style={{ paddingLeft: 20 }}>
+            <Link style={{ color: "white" }} to="/map">
+              Map
+            </Link>
+          </Typography>
+          <Typography variant="h6" style={{ paddingLeft: 20 }}>
             <Link style={{ color: "white" }} to="/movies">
               Moives
             </Link>

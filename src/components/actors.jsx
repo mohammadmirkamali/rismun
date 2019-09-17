@@ -3,40 +3,27 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import { connect } from "react-redux";
+import { getActors, setName } from "./../actions/actorsAction";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 class Actors extends Component {
-  state = { name: "", actors: [] };
-
   async componentDidMount() {
-    const { data: actors } = await axios.get(
-      "http://localhost:8000/api/actors"
-    );
-
-    this.setState({ actors });
+    this.props.getActorsList();
   }
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.value });
-  };
-
-  handleActors = async () => {
-    const obj = { name: this.state.name };
-
+  addActor = async () => {
+    const obj = { name: this.props.actors.name };
     try {
       await axios.post("http://localhost:8000/api/actors", obj);
-      // console.log(obj);
-      // console.log(actors);
-
       window.location = "/actors";
     } catch (ex) {
-      const errors = ex.response.data;
-      toast.error(errors);
+      toast.error(ex.response.data);
     }
   };
   render() {
-    const { name, actors } = this.state;
+    const { actors, name } = this.props.actors;
 
     return (
       <React.Fragment>
@@ -57,28 +44,49 @@ class Actors extends Component {
             label="Actor name"
             variant="outlined"
             value={name}
-            onChange={this.handleChange("name")}
+            onChange={e => this.props.newActor(e.target.value)}
           />
           <div>
             <Button
               variant="contained"
               color="primary"
               style={{ margin: 20 }}
-              onClick={this.handleActors}
+              onClick={this.addActor}
             >
               Add Actor
             </Button>
           </div>
 
-          {actors.map(ac => (
-            <ListItem button key={ac._id} divider>
-              <ListItemText primary={ac.name} />
-            </ListItem>
-          ))}
+          {actors &&
+            actors.map(ac => (
+              <ListItem button key={ac._id} divider>
+                <ListItemText primary={ac.name} />
+              </ListItem>
+            ))}
         </div>
       </React.Fragment>
     );
   }
 }
 
-export default Actors;
+const mapStateToProps = state => {
+  return {
+    actors: state.actors
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getActorsList: () => {
+      dispatch(getActors());
+    },
+    newActor: name => {
+      dispatch(setName(name));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Actors);

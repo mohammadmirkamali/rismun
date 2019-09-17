@@ -7,7 +7,10 @@ import Movies from "./components/movies";
 import MovieForm from "./components/movieForm";
 import Home from "./components/home";
 import Login from "./components/login";
+import Map1 from "./components/map";
 import Register from "./components/register";
+import store from "./store";
+import { Provider } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 // import Map1 from "./components/map";
@@ -42,19 +45,22 @@ class App extends Component {
     const { user } = this.state;
     return (
       <React.Fragment>
-        <ToastContainer />
-        <Route path="/" render={props => <Nav {...props} user={user} />} />
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/movies/:id" component={MovieForm} />
-          <Route path="/actors" component={Actors} />
-          <Route
-            path="/movies"
-            render={props => <Movies {...props} user={user} />}
-          />
-          <Route path="/" component={Home} />
-        </Switch>
+        <Provider store={store}>
+          <ToastContainer />
+          <Route path="/" render={props => <Nav {...props} user={user} />} />
+          <Switch>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/map" component={Map1} />
+            <Route path="/movies/:id" component={MovieForm} />
+            <Route path="/actors" component={Actors} />
+            <Route
+              path="/movies"
+              render={props => <Movies {...props} user={user} />}
+            />
+            <Route path="/" component={Home} />
+          </Switch>
+        </Provider>
       </React.Fragment>
     );
   }
