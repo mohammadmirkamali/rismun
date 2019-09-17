@@ -76,14 +76,6 @@ class Movies extends React.Component {
 
     return (
       <div>
-        <a
-          class="uk-button uk-button-primary"
-          // offset="0"
-          href="#target"
-          uk-scroll
-        >
-          Scroll down
-        </a>
         <MUIDataTable
           title={"Movies List"}
           data={m2}
